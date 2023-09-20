@@ -9,5 +9,6 @@ router.get('/', protect, getGoals)
 router.post('/', protect, setGoals)
 router.put('/:id', protect, putGoals)
 router.delete('/:id', protect, deleteGoals)
+
 module.exports = router
 

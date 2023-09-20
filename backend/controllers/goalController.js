@@ -39,15 +39,14 @@ const putGoals = asyncHandler(async(req, res) =>{
         throw new Error('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
 
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error('user not found')
     }
 
     // This ensures that the goal you are attempting to access is associated with this user
-    if(goal.user.toString() !== user.id){
+    if(goal.user.toString() !== req.user.id){
         res.status(401)
         throw new Error('User not authorised')
     }
@@ -65,14 +64,13 @@ const deleteGoals = asyncHandler(async(req, res) =>{
         throw new Error('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
 
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error('user not found')
     }
 
-    if(goal.user.toString() !== user.id){
+    if(goal.user.toString() !== req.user.id){
         res.status(401)
         throw new Error('User not authorised')
     }

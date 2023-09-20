@@ -68,12 +68,7 @@ const loginUser = AsyncHandler(async (req, res) => {
 
 
 const getMe =AsyncHandler (async  (req, res)=>{
-    const {_id, name, email} = await User.findById(req.user.id)
-    res.status(200).json({
-      id: _id,
-      name,
-      email,
-    })
+  res.status(200).json(req.user)
 })
 
 // Encrypts a given id using a secret key
